@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Assertions;
 public class ExampleTest {
     @Test
     void ExampleTest(){
-        Assertions.assertTrue(2>1);
+        Assertions.assertTrue(2>=1);
 
     }
     @Test
     void ExampleTest1(){
-        Assertions.assertTrue(3>2);
+        Assertions.assertTrue(3>=2);
 
     }
 }
