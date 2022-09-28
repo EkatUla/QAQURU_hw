@@ -2,6 +2,7 @@ package com.demoqa;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +28,7 @@ public class TestForm{
         // тестовые данные
         String name = "Ivan";
         String Last_Name = "Ivanov";
-        String Emai = "Ivanov@qaz.ru";
+        String Email = "Ivanov@qaz.ru";
         String Number = "9999999999";
         String Subject = "Maths";
         int data = 31;
@@ -37,8 +38,8 @@ public class TestForm{
         open("/automation-practice-form");
         $("#firstName").setValue(name);
         $("#lastName").setValue(Last_Name);
-        $("#userEmail").setValue(Emai);
-        $x("//label[contains(text(), 'Other')]").click();
+        $("#userEmail").setValue(Email);
+        $("#genterWrapper").$(byText("Other")).click();
         $("#userNumber").setValue(Number);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("December");
@@ -48,15 +49,13 @@ public class TestForm{
         $("#hobbiesWrapper").$(byText("Music")).click();
         $("#uploadPicture").uploadFile(new File("src/test/resources/test.txt"));
         $("#currentAddress").setValue(Adder);
-        $x("//div[@id='state']").click();
-        $x("//div[@id = 'stateCity-wrapper']//div[contains(text(), 'NCR') ]").doubleClick();
-        $x("//div[@id='city']").click();
-        $x("//div[@id = 'city']//div[contains(text(), 'Delhi')]").doubleClick();
+        $("#state").click();
+        $("#state").$(byText("NCR")).doubleClick();
+        $("#city").click();
+        $("#city").$(byText("Delhi")).doubleClick();
         $("#submit").click();
-
-
         $(".table-responsive").shouldHave(Condition.text(name + " " + Last_Name));
-        $(".table-responsive").shouldHave(text(Emai));
+        $(".table-responsive").shouldHave(text(Email));
         $(".table-responsive").shouldHave(text(Number));
         $(".table-responsive").shouldHave(Condition.text(data + " " + "December" + "," + "2000"));
         $(".table-responsive").shouldHave(text("Music"));
@@ -65,9 +64,5 @@ public class TestForm{
         $(".table-responsive").shouldHave(text(Adder));
         $(".table-responsive").shouldHave(text("test.txt"));
         $(".table-responsive").shouldHave(text("Other"));
-
-
-
-
     }
 }
