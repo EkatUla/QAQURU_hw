@@ -36,6 +36,8 @@ public class TestForm{
 
 
         open("/automation-practice-form");
+        //executeJavaScript("$('footer').remote()");
+        //executeJavaScript("$('#fixedban').remote()");
         $("#firstName").setValue(name);
         $("#lastName").setValue(Last_Name);
         $("#userEmail").setValue(Email);
@@ -52,7 +54,7 @@ public class TestForm{
         $("#state").click();
         $("#state").$(byText("NCR")).doubleClick();
         $("#city").click();
-        $("#city").$(byText("Delhi")).doubleClick();
+        $("#city").$(byText("Delhi")).click();
         $("#submit").click();
         $(".table-responsive").shouldHave(Condition.text(name + " " + Last_Name));
         $(".table-responsive").shouldHave(text(Email));
